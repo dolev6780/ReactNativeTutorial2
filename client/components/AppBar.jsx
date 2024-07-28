@@ -1,9 +1,17 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import { Icon } from "react-native-elements";
-import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export default function AppBar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const navigation = useNavigation();
+
   return (
     <View style={styles.appbar}>
       <Text style={styles.logo}>AppBar</Text>
@@ -13,27 +21,10 @@ export default function AppBar() {
           name="menu"
           color="white"
           size={28}
-          onPress={() => {
-            setIsOpen(!isOpen);
-          }}
+          onPress={() => navigation.toggleDrawer()} // Toggle drawer on press
+          accessibilityLabel="Toggle menu"
         />
       </View>
-      {isOpen && (
-        <View style={styles.menuContainer}>
-          <Pressable>
-            <Text style={styles.menuButton}>1</Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.menuButton}>2</Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.menuButton}>3</Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.menuButton}>4</Text>
-          </Pressable>
-        </View>
-      )}
     </View>
   );
 }
@@ -53,16 +44,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize: 20,
   },
-  menuContainer: {
-    position: "absolute",
-    right: 0,
-    top: 60,
-    backgroundColor: "black",
-    width: "40%",
-    alignItems: "flex-end",
-    padding: 10,
-  },
-  menuButton: {
-    color: "white",
+  menuIcon: {
+    marginRight: 10,
   },
 });

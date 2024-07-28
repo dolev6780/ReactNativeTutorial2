@@ -1,15 +1,13 @@
-import { SafeAreaView, StyleSheet, Text, View, StatusBar } from "react-native";
-import AppBar from "./components/AppBar";
-import Feed from "./screens/Feed";
-import SignIn from "./screens/SignIn";
+// App.js
+import React from "react";
+import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
+import Drawer from "./components/Drawer";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden />
-      <AppBar />
-      <Feed />
-      {/* <SignIn /> */}
+      <Drawer />
     </SafeAreaView>
   );
 }
@@ -17,6 +15,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: StatusBar.currentHeight,
   },
 });
